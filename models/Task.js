@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 // Define a schema
 const taskSchema = new mongoose.Schema({
+    id: Number,
     name: String,
     description: String,
 });
