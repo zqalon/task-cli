@@ -17,8 +17,18 @@ import { connect, disconnect, addTask, listTasks } from './db.js';
 
 const args = process.argv.slice(2);
 
-if (args.length === 0) {
-    console.log("Welcome to My CLI App! Please provide some arguments.");
+if (args.length === 0 || (args.length === 1 && args.at(0) === "help")){
+    console.log(
+`
+Welcome to My Task Manager CLI App! 
+    Usage:  
+    
+    help ~ to list all commands
+    list ~ to list all tasks
+    add <name> <descripttion> ~ to add a new task
+    `
+    );
+    
 } else if (args.length >= 2 && args.at(0) == "add"){
     try{
         await connect();
