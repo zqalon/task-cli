@@ -2,8 +2,7 @@
 import env from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
-
-import prettyjson from 'prettyjson';
+import chalk from 'chalk';
 
 // Get the directory of the current file
 const __filename = fileURLToPath(import.meta.url);
@@ -28,7 +27,7 @@ Welcome to My Task Manager CLI App!
     add <name> <descripttion> ~ to add a new task
     `
     );
-    
+
 } else if (args.length >= 2 && args.at(0) == "add"){
     try{
         await connect();
@@ -40,7 +39,9 @@ Welcome to My Task Manager CLI App!
     try{
         await connect();
         const tasks = await listTasks();
-        console.log(prettyjson.render(tasks));
+        for (const task of tasks){
+            console.log(`${chalk.magenta(task.name)} ${chalk.yellow('~')} ${chalk.blue(task.description)}`);
+        }
     } finally {
         await disconnect();
     }

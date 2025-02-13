@@ -13,6 +13,7 @@
     "task": "./index.js"
   },
   "dependencies": {
+    "chalk": "^5.4.1",
     "dotenv": "^16.4.7",
     "mongodb": "^6.12.0",
     "mongoose": "^8.9.5",
