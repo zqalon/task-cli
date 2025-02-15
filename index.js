@@ -39,9 +39,9 @@ Welcome to My Task Manager CLI App!
     try{
         await connect();
         const tasks = await listTasks();
-        for (const task of tasks){
-            console.log(`${chalk.magenta(task.name)} ${chalk.yellow('~')} ${chalk.blue(task.description)}`);
-        }
+        tasks.forEach((task, index) => {
+            console.log(`${chalk.green(`${index})`)} ${chalk.magenta(task.name)} ${chalk.yellow('~')} ${chalk.blue(task.description)}`);
+        });
     } finally {
         await disconnect();
     }
