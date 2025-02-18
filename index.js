@@ -1,21 +1,13 @@
 #!/usr/bin/env node
-import env from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import chalk from 'chalk';
-
-// Get the directory of the current file
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// Load .env from the project root
-env.config();
-console.log(process.env.MONGODB_URI);
 
 import { connect, disconnect, addTask, listTasks } from './db.js';
 
 const args = process.argv.slice(2);
 
+// task (help)
 if (args.length === 0 || (args.length === 1 && args.at(0) === "help")){
     console.log(
 `
@@ -24,10 +16,11 @@ Welcome to My Task Manager CLI App!
     
     help ~ to list all commands
     list ~ to list all tasks
-    add <name> <descripttion> ~ to add a new task
+    add <name> <description> ~ to add a new task
     `
     );
 
+    // task add <name> <description>
 } else if (args.length >= 2 && args.at(0) == "add"){
     try{
         await connect();
@@ -35,6 +28,8 @@ Welcome to My Task Manager CLI App!
     } finally {
         await disconnect();
     }
+
+    //task list
 } else if (args.length === 1 && args.at(0) === "list"){
     try{
         await connect();

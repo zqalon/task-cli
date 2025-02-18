@@ -16,12 +16,12 @@ const uri = process.env.MONGODB_URI;
 export async function connect(){
     // Connect to MongoDB
     await mongoose.connect(uri);
-    console.log('Connected to MongoDB');
+    //console.log('Connected to MongoDB');
 }
 
 export async function disconnect(){
     await mongoose.disconnect();
-    console.log('Mongodb connection closed');
+    //console.log('Mongodb connection closed');
 }
 
 export async function addTask(name, description){
@@ -30,7 +30,7 @@ export async function addTask(name, description){
 
     // Save the document
     await task.save();
-    console.log('Task added');
+    //console.log('Task added');
 }
 
 export async function listTasks(){
